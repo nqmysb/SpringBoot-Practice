@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>SpringBoot-Practice</name>
+	
+	
+	<groupId>com.nqmysb</groupId>
+	<artifactId>SpringBoot-Practice</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>springboot-scaffold</module>
+
+		<module>springboot-mybstisplus-crud</module>
+
+		<module>springboot-dynamic-data-source</module>
+
+		<module>springboot-mongodb</module>
+	</modules>
+</project>
