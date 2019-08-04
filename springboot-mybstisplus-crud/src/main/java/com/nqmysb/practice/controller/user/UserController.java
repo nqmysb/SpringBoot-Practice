@@ -15,7 +15,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nqmysb.practice.dto.user.UserDTO;
 import com.nqmysb.practice.entity.user.User;
 import com.nqmysb.practice.service.user.IUserService;
-import com.nqmysb.practice.service.user.impl.UserServiceImpl;
 import com.nqmysb.practice.utils.JsonResult;
 import com.nqmysb.practice.utils.ResultCode;
 import com.nqmysb.practice.vo.user.UserVO;
@@ -89,10 +88,10 @@ public class UserController {
         @ApiImplicitParam(paramType = "query", name = "phone", dataType = "string", required = false, value = "电话号码")   
 	})  
 	@RequestMapping(value ="/insert",method=RequestMethod.POST)
-	public JsonResult<ArrayList<UserVO>> insert(@RequestBody(required=false) UserDTO UserDTO) throws Exception {
+	public JsonResult<ArrayList<UserVO>> insert(@RequestBody(required=false) UserDTO userDTO) throws Exception {
 		try {
 			User entity = new User();
-			BeanUtils.copyProperties(UserDTO, entity);
+			BeanUtils.copyProperties(userDTO, entity);
 			userServiceImpl.save(entity);
 			return JsonResult.buildSuccessResult();
 		} catch (Exception e) {
@@ -110,10 +109,10 @@ public class UserController {
         @ApiImplicitParam(paramType = "query", name = "phone", dataType = "string", required = false, value = "电话号码")   
 	})  
 	@RequestMapping(value ="/update",method=RequestMethod.POST)
-	public JsonResult<ArrayList<UserVO>> udpate(@RequestBody(required=false) UserDTO UserDTO) throws Exception {
+	public JsonResult<ArrayList<UserVO>> udpate(@RequestBody(required=false) UserDTO userDTO) throws Exception {
 		try {
 			User entity = new User();
-			BeanUtils.copyProperties(UserDTO, entity);
+			BeanUtils.copyProperties(userDTO, entity);
 			userServiceImpl.updateById(entity);
 			return JsonResult.buildSuccessResult();
 		} catch (Exception e) {
@@ -128,14 +127,14 @@ public class UserController {
         @ApiImplicitParam(paramType = "query", name = "userid", dataType = "string", required = false, value = "用户账号"),  
 	})  
 	@RequestMapping(value ="/delete",method=RequestMethod.POST)
-	public JsonResult<ArrayList<UserVO>> delete(@RequestBody(required=false) ArrayList<UserDTO> UserDTOs) throws Exception {
+	public JsonResult<ArrayList<UserVO>> delete(@RequestBody(required=false) ArrayList<UserDTO> userDTOs) throws Exception {
 		try {
 			//获取主键列表
 			List<String> resList = new ArrayList<String>();
-			if (null != UserDTOs && UserDTOs.size() > 0 ){			
-				for (UserDTO UserDTO : UserDTOs) {
+			if (null != userDTOs && userDTOs.size() > 0 ){			
+				for (UserDTO userDTO : userDTOs) {
 					User entity = new User();
-					BeanUtils.copyProperties(UserDTO, entity);
+					BeanUtils.copyProperties(userDTO, entity);
 					resList.add(entity.getUserid());
 				}
 			}else{

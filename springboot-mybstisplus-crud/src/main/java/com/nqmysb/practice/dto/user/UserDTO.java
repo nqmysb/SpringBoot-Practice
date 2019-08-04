@@ -1,5 +1,7 @@
 package com.nqmysb.practice.dto.user;
 
+import com.nqmysb.practice.dto.base.BaseDTO;
+
 import lombok.Data;
 
 /** 
@@ -11,7 +13,7 @@ import lombok.Data;
  *
  */  
 @Data
-public class UserDTO {
+public class UserDTO  extends BaseDTO{
 	  
     /*
      * 用户账号
@@ -50,15 +52,5 @@ public class UserDTO {
     private String status;
     
     
-    /*
-     * 当前页码
-     */
-
-    private int page;
-
-    /*
-     * 页大小
-     */
-    private int pageSize;
 
 }

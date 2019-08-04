@@ -2,8 +2,10 @@ package com.nqmysb.practice.entity.user;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.Data;
@@ -30,7 +32,8 @@ public class User implements Serializable {
     /*
      * 用户账号
      */
-    @TableField("YHZH")
+    //@TableField("YHZH")
+    @TableId(value = "YHZH", type = IdType.INPUT)
     private String userid;
     
     /*
