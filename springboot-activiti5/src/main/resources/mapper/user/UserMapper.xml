@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nqmysb.practice.mapper.user.UserMapper">
+
+
+	<select id="query" resultType="com.nqmysb.practice.entity.user.User" parameterType="com.nqmysb.practice.vo.user.UserVO">
+      SELECT  YHZH USERID ,
+		      YHMC USERNAME, 
+		      YHMM PASSWORD ,
+		      LXDH PHONE,
+		      LXYX EMAIL 
+		      FROM YHXXB  T
+              WHERE 1=1
+  <!--     <if test="userDTO.username != null and organizationDTO.username != ''">
+          AND T.ZZJGBM||T.ZZJGMC||T.ZZJGBM||T.ZZJGFZR||T.LXDH||T.DZYX LIKE  CONCAT(CONCAT('%',#{organizationDTO.fullName}),'%') 
+      </if> -->
+              
+    </select>
+
+</mapper>
