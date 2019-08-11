@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@MapperScan("com.nqmysb.scaffold.mapper.*.*")
+@MapperScan("com.nqmysb.practice.mapper.*.*")
 @ServletComponentScan
 public class SpringbootMybstisplusCrudApplication {
 

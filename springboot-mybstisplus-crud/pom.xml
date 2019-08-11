@@ -4,7 +4,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nqmysb</groupId>
-	<artifactId>practice</artifactId>
+	<artifactId>springboot-mybstisplus-crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-mybstisplus-crud</name>
 	<description>springboot-mybstisplus-crud -整合MybatisPlus完成的CRUD</description>
