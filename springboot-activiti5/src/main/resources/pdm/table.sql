@@ -7,7 +7,7 @@ CREATE TABLE YHXXB
   LXDH VARCHAR2(20),
   LXYX VARCHAR2(20),
   ZT   VARCHAR2(2)
-)
+);
 
 -- Create sequence 
 create sequence SEQ_YHXXB

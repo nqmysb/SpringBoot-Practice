@@ -6,11 +6,12 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:oracle:thin:@//192.168.18.150:1521/orclpdb
+    #url: jdbc:oracle:thin:@//192.168.18.150:1521/orclpdb
     #jdbc-url: jdbc:oracle:thin:@//192.168.6.121:1521/orclpdb
+    url: jdbc:oracle:thin:@//192.168.6.121:1521/orclpdb
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: LC_TEST
-    password: LC_TEST
+    username: LC_T
+    password: LC_T
     druid:
       initial-size: 2
       max-active: 30
