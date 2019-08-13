@@ -25,7 +25,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * create_drop： 在activiti启动时创建表，在关闭时删除表（必须手动关闭引擎，才能删除表）。
  * drop-create： 在activiti启动时删除原来的旧表，然后在创建新表（不需要手动关闭引擎）。
  * 4.history-level：历史记录等级 full最高级 用于回溯流程历史数据 HistoryLevel.FULL
- * 
+ * 5.check-process-definitions  是否自动验证部署  false  true 会自动找process文件下的bpmn文件进行部署
  * 二.服务组件
  * 通过流程引擎可以获取七大服务组件
  * 1. RepositoryService : 提供一系列管理流程定义和流程部署的API
@@ -39,7 +39,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 三.数据库表结构
  * 
  * 
- *  
+ * 
  * @author liaocan
  *
  */
@@ -69,12 +69,16 @@ public class ActivitiDataSourceConfig extends AbstractProcessEngineAutoConfigura
     public SpringProcessEngineConfiguration springProcessEngineConfiguration() {
         SpringProcessEngineConfiguration configuration = new SpringProcessEngineConfiguration();
         configuration.setDataSource(activitiDataSource());
-        configuration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+//        configuration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+        configuration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE);
         configuration.setJobExecutorActivate(true);
         configuration.setTransactionManager(transactionManager());
         configuration.setHistoryLevel(HistoryLevel.FULL);
         configuration.setDbIdentityUsed(false);
-        
+        //防止生成流程图乱码
+        configuration.setActivityFontName("宋体");
+        configuration.setLabelFontName("宋体");
+        configuration.setAnnotationFontName("宋体");
         return configuration;
     }
 
