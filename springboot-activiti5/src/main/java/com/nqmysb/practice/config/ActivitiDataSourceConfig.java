@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.alibaba.druid.pool.DruidDataSource;
 /**
+ * 学习总结
  * 一.activiti流程引擎配置类
  * 主要配置类容有：
  * 1.数据源：DataSource 我这里用DruidDataSource，可以用不同的实现c3p0 dbcp
@@ -36,7 +37,9 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 6. HistoryService: 对流程的历史数据进行操作，包括查询、删除这些历史数据
  * 7. DynamicBpmnService: 使用该服务，可以不需要重新部署流程模型，就可以实现对流程模型的部分修改 
  * 
- * 三.数据库表结构
+ * 三.数据库表结构设计
+ * 
+ * 四：API使用 
  * 
  * 
  * 
