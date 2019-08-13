@@ -33,12 +33,14 @@ spring:
       
  # 工作流
     activiti:
-      check-process-definitions: false
-      db-identity-used: true
+      # 校验resource/process/下的流程模型
+      #check-process-definitions: false
+      # 校验用户信息表是否存在
+      #db-identity-used: true
       # 自动生成Activiti相关表 第一次生成后建议关闭提高运行速度
-      database-schema-update: true
+      #database-schema-update: true
       # 保存历史数据级别设置为full最高级别，便于历史数据的追溯
-      history-level: full   
+      #history-level: full   
       
 mybatis-plus:
   mapper-locations: classpath:/mapper/*/*Mapper.xml
