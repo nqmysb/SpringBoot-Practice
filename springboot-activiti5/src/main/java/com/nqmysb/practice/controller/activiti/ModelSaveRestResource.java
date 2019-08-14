@@ -3,14 +3,20 @@ package com.nqmysb.practice.controller.activiti;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.Model;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +78,22 @@ public class ModelSaveRestResource implements ModelDataJsonConstants {
       final byte[] result = outStream.toByteArray();
       repositoryService.addModelEditorSourceExtra(model.getId(), result);
       outStream.close();
+      
+      
+      //部署流程
+      Model modelData = repositoryService.getModel(modelId);
+      ObjectNode modelNode = (ObjectNode) objectMapper.readTree(repositoryService.getModelEditorSource(modelData.getId()));
+      byte[] bpmnBytes = null;
+      BpmnModel model2 = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+      bpmnBytes = new BpmnXMLConverter().convertToXML(model2);
+
+      String processName = modelData.getName() + ".bpmn";
+
+      //部署流程
+      Deployment deployment = repositoryService.createDeployment()
+              .name(modelData.getName())
+              .addString(processName, StringUtils.toEncodedString(bpmnBytes, Charset.forName("UTF-8")))
+              .deploy();
       
     } catch (Exception e) {
       LOGGER.error("Error saving model", e);
