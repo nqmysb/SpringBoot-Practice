@@ -27,8 +27,8 @@ import com.nqmysb.practice.entity.user.User;
  * 序列化参数，如对象等 需要多存放ACT_GE_BYTEARRAY表
  * 
  * 参数的作用域：
- * 本地参数  当前任务节点有用  get set 方法不要混用
- * 全局参数  下一节点任务有效
+ * 本地参数  当前任务节点有用   setVariableLocal getVariableLocal  方法不要混用
+ * 全局参数  下一节点任务有效   getVariable setVariable
  * 
  * 
  * 四种设置全局变量
@@ -84,6 +84,11 @@ public class ActivitiAPITest4 {
 	         *  text_ 存放值  
 	         *  long 0或者1   
 	         *  BYTEARRAY_ID	ACT_GE_BYTEARRAY 存放序列化值  
+	         *  
+	         *  1	57503	1	boolean			var2			d5215a2d-1506-4d05-b509-8426ee263cf1			1			AAASz4AAUAAAANFAAA
+				2	57506	1	serializable	var3			d5215a2d-1506-4d05-b509-8426ee263cf1	57505					AAASz4AAUAAAANFAAB
+				3	57501	1	string			var1			d5215a2d-1506-4d05-b509-8426ee263cf1				hello		AAASz4AAUAAAANFAAC
+
 	        */
 	               
 	               
@@ -92,7 +97,7 @@ public class ActivitiAPITest4 {
 	
 	
 	/**
-	 * 本地参数  当前任务节点  本地有效
+	 * 本地参数  当前任务节点  本地有效  存数据库ACT_RU_VARIABLE 下一个节点删除
 	 * 
 	 * @throws FileNotFoundException
 	 */
@@ -133,7 +138,7 @@ public class ActivitiAPITest4 {
 	
 	
 	/**
-	 * 全局参数  下一节点有效
+	 * 全局参数  下一节点有效  会存数据库ACT_RU_VARIABLE
 	 * 
 	 * @throws FileNotFoundException
 	 */

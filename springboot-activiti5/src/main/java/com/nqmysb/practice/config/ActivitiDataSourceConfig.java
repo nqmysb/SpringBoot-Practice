@@ -78,6 +78,8 @@ public class ActivitiDataSourceConfig extends AbstractProcessEngineAutoConfigura
         configuration.setTransactionManager(transactionManager());
         configuration.setHistoryLevel(HistoryLevel.FULL);
         configuration.setDbIdentityUsed(false);
+        //异步执行
+        configuration.setAsyncExecutorActivate(true);
         //防止生成流程图乱码
         configuration.setActivityFontName("宋体");
         configuration.setLabelFontName("宋体");
