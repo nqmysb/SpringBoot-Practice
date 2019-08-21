@@ -8,6 +8,7 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.task.Task;
 import org.junit.Test;
@@ -129,6 +130,52 @@ public class ActivitiAPITest3 {
 	        for(Task t : tasks) {
 	            System.out.println(t.getName());
 	        }
+
+		
+	}
+	
+	
+	/**
+	 *  任务候选人  和任务 多对多 addCandidateUser
+	 * @throws FileNotFoundException
+	 */
+	@Test
+	
+	public  void deployTest4() throws FileNotFoundException {
+		
+		 ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
+	        TaskService ts = engine.getTaskService();
+	        IdentityService is = engine.getIdentityService();
+	        // 创建任务
+	        String taskId = UUID.randomUUID().toString();
+	        Task task = ts.newTask(taskId);
+	        task.setName("测试任务111");
+	        ts.saveTask(task);
+	        //  创建用户
+	        String group = UUID.randomUUID().toString();
+	        Group group1 = is.newGroup(group);
+	        group1.setName("fdsf111");
+	       
+	        is.saveGroup(group1);
+	        // 设置任务的候选用户组
+	        ts.addCandidateGroup(taskId, group);;
+	        String userId = UUID.randomUUID().toString();
+	        User user = is.newUser(userId);
+	        user.setFirstName("sdd");
+	        is.saveUser(user);
+	        is.createMembership(userId,group);
+	      
+	        
+	        List<Task> tasks = ts.createTaskQuery().taskCandidateUser(userId).list();
+	        System.out.println(userId + " 这个用户有权限处理的任务有：");
+	        for(Task t : tasks) {
+	            System.out.println(t.getName());
+	        }
+	        
+	        /*
+	         * f9f6b50c-b5ed-4b04-a908-af57740206d7 这个用户有权限处理的任务有：
+				测试任务111
+	         */
 
 		
 	}
