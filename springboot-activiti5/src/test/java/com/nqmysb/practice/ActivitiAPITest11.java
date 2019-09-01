@@ -28,7 +28,19 @@ import org.springframework.test.context.junit4.SpringRunner;
  * 	用户任务：由人参与的任务
  * 
  *  服务任务：
- *  
+ *   Activiti 为服务任务提供了 三种实现：
+Java Service Task 、 Web Service Task 和 Shell Task ，其中 Java Service Task 允许直接提供 Java
+类，当流程到达该任务时，执行相应的 Java 类
+使用 Service Task 执行 Java 程序有以下 4 种途径。
+〉使用 activiti: class 属性指定一个 Java 类，但是该 Java 类必须是 JavaDelegate 或者
+Activity Behavior 的实现类。
+〉使用 activiti:delegateExpression 属性并配合 JUEL 表达式指定一个流程参数的实例 ，该
+实例的 Java 类同样需要是 JavaDelegate 或者 ActivityBehavior 的实现类，井且需要实现
+序列化接口。
+》使用 activiti: expression 属性配合 JUEL 表达式指定一个流程参数，该参数是一个对象
+的实例，并且需要指定使用的方法。
+〉使用 activiti: expression 属性配合  JUEL表达式指定一个流程参数，该参数是一个对象
+的实例，需要指定使用的对象的属性，该对象需要为这个使用的属性提供 getter 方法。
  *  
  *  
  * 分配任务的候选人,代理人
