@@ -46,14 +46,14 @@ public class ActivitiAPITest3 {
 	        // 创建任务
 	        String taskId = UUID.randomUUID().toString();
 	        Task task = ts.newTask(taskId);
-	        task.setName("测试任务");
+	        task.setName("测试任务222");
 	        ts.saveTask(task);
 	        //  创建用户
 	        String userId = UUID.randomUUID().toString();
 	        User user = is.newUser(userId);
-	        user.setFirstName("angus");
+	        user.setFirstName("angus222");
 	        is.saveUser(user);
-	        // 设置任务的候选用户组
+	        // 设置任务的候选用户
 	        ts.addCandidateUser(taskId, userId);
 	        
 	        
@@ -63,7 +63,7 @@ public class ActivitiAPITest3 {
 	            System.out.println(t.getName());
 	        }
 	         //ACT_RU_IDENTITYLINK  保存了 task deployment 之前的关系 数据权限
-	        // userid  taskid
+	        // userid  taskid  type_ 
 	        //27501	1		candidate	20c6f82e-6906-4fb2-bb47-9ea42bb563d2	589b0d28-b8b0-47e7-a5ff-5fdcad6f8d23			
 
 		
@@ -83,18 +83,22 @@ public class ActivitiAPITest3 {
         // 创建任务
         String taskId = UUID.randomUUID().toString();
         Task task = ts.newTask(taskId);
-        task.setName("测试任务");
+        task.setName("测试任务888");
         ts.saveTask(task);
         //  创建用户
         String userId = UUID.randomUUID().toString();
         User user = is.newUser(userId);
-        user.setFirstName("angus");
+        user.setFirstName("angus888");
         is.saveUser(user);
+        String userId1 = UUID.randomUUID().toString();
+        User user1 = is.newUser(userId1);
+        user1.setFirstName("angus999");
+        is.saveUser(user1);
         
-        ts.claim(taskId, userId);
+        ts.claim(taskId, userId);  //设置Assignee
         //ts.claim(taskId, "100");会报错
-        
-        List<Task> tasks = ts.createTaskQuery().taskAssignee(userId).list();
+        ts.delegateTask(taskId,userId1); //Assignee变owner
+        List<Task> tasks = ts.createTaskQuery().taskAssignee(userId1).list();
         for(Task t : tasks) {
             System.out.println(t.getName());
         }
@@ -115,14 +119,14 @@ public class ActivitiAPITest3 {
 	        // 创建任务
 	        String taskId = UUID.randomUUID().toString();
 	        Task task = ts.newTask(taskId);
-	        task.setName("测试任务");
+	        task.setName("测试任务444");
 	        ts.saveTask(task);
 	        //  创建用户
 	        String userId = UUID.randomUUID().toString();
 	        User user = is.newUser(userId);
-	        user.setFirstName("angus");
+	        user.setFirstName("angus444");
 	        is.saveUser(user);
-	        // 设置任务的候选用户组
+	        // 设置任务的拥有者
 	        ts.setOwner(taskId, userId);
 	        
 	        // 根据用户来查询他所持有的任务
@@ -158,10 +162,10 @@ public class ActivitiAPITest3 {
 	       
 	        is.saveGroup(group1);
 	        // 设置任务的候选用户组
-	        ts.addCandidateGroup(taskId, group);;
+	        ts.addCandidateGroup(taskId, group);
 	        String userId = UUID.randomUUID().toString();
 	        User user = is.newUser(userId);
-	        user.setFirstName("sdd");
+	        user.setFirstName("sdd111");
 	        is.saveUser(user);
 	        is.createMembership(userId,group);
 	      
